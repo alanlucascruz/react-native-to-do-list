@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
-  Appearance,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -8,21 +7,21 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, deleteItem, toggleCompleted } from './listSlice';
-import MIcon from "react-native-vector-icons/MaterialIcons";
-
-const colorScheme = Appearance.getColorScheme();
+import MIcon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch, useSelector} from 'react-redux';
+import {addItem, deleteItem, toggleCompleted} from './listSlice';
 
 export default () => {
-  const list = useSelector(state => state.list);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
+
+  const {list} = useSelector(state => state);
+
   const dispatch = useDispatch();
 
-  const renderItem = ({ item }) => {
-    const { id, description, completed } = item;
+  const renderItem = ({item}) => {
+    const {id, description, completed} = item;
 
     return (
       <View style={styles.listItem}>
@@ -30,13 +29,16 @@ export default () => {
 
         <View style={styles.listButtons}>
           <Switch
-            trackColor={{ false: "#c1c1c1", true: "#ad75fa" }}
-            thumbColor={!completed ? "#858585" : "#6A00FF"}
+            trackColor={{false: '#c1c1c1', true: '#4e84e6'}}
+            thumbColor={!completed ? '#858585' : '#003491'}
             onValueChange={() => dispatch(toggleCompleted(id))}
             value={completed}
           />
-          <TouchableOpacity onPress={() => dispatch(deleteItem(id))} style={{ marginLeft: 8 }} hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}>
-            <MIcon name={"delete"} size={28} color="#FF2A00" />
+          <TouchableOpacity
+            onPress={() => dispatch(deleteItem(id))}
+            style={{marginLeft: 8}}
+            hitSlop={{top: 10, right: 10, bottom: 10, left: 10}}>
+            <MIcon name={'delete'} size={28} color="#FF2A00" />
           </TouchableOpacity>
         </View>
       </View>
@@ -46,23 +48,27 @@ export default () => {
   const onPressButton = () => {
     if (description) {
       dispatch(addItem(description));
-      setDescription("");
+      setDescription('');
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.inputBox}>
+      <View style={styles.tetInputContainer}>
         <TextInput
           style={styles.input}
           placeholder="Adicione uma tarefa"
+          placeholderTextColor={'#a1a1a1'}
           onChangeText={setDescription}
           value={description}
           returnKeyType="done"
           onSubmitEditing={onPressButton}
         />
 
-        <TouchableOpacity style={styles.button} onPress={onPressButton}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={onPressButton}
+          activeOpacity={0.7}>
           <Text style={styles.buttonIcon}>+</Text>
         </TouchableOpacity>
       </View>
@@ -75,56 +81,56 @@ export default () => {
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  inputBox: {
-    flexDirection: "row",
+  tetInputContainer: {
+    flexDirection: 'row',
     padding: 16,
-    marginBottom: 4
+    marginBottom: 4,
   },
   input: {
     flex: 1,
-    backgroundColor: colorScheme === "light" ? "#d3d3d3" : "#555555",
+    backgroundColor: '#e9e9e9',
     borderRadius: 4,
     fontSize: 16,
     marginRight: 56,
   },
   button: {
-    position: "absolute",
+    position: 'absolute',
     right: 8,
     top: 13,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: "#6A00FF",
-    elevation: 8
+    backgroundColor: '#003491',
+    elevation: 8,
   },
   buttonIcon: {
-    color: "#ffffff",
+    color: '#ffffff',
     fontSize: 42,
-    fontWeight: "600",
-    top: -2
+    fontWeight: '600',
+    top: -2,
   },
   list: {
-    padding: 16
+    padding: 16,
   },
   listItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 8,
-    marginBottom: 8
+    marginBottom: 8,
   },
   listText: {
     fontSize: 16,
-    fontWeight: "700"
+    fontWeight: '700',
   },
   listButtons: {
-    flexDirection: "row"
-  }
+    flexDirection: 'row',
+  },
 });

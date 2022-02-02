@@ -7,18 +7,22 @@
  */
 
 import React from 'react';
+import {StatusBar} from 'react-native';
 
-import { Provider } from 'react-redux';
-import store from './app/store';
+import {Provider} from 'react-redux';
+import store from './store';
 
-import List from './features/list/List';
+import List from './screens/List';
+
+StatusBar.setBackgroundColor('#003491');
+StatusBar.setBarStyle('light-content');
 
 const App = () => {
   return (
     <Provider store={store}>
       <List />
     </Provider>
-  )
-}
+  );
+};
 
 export default App;
