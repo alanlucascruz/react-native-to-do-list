@@ -1,6 +1,6 @@
 import {createSlice, nanoid} from '@reduxjs/toolkit';
 
-export const listSlice = createSlice({
+const listSlice = createSlice({
   name: 'list',
   initialState: [
     {id: nanoid(), description: 'Entender o React Native', completed: true},

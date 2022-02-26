@@ -3,10 +3,8 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
-  Switch,
   Text,
   TextInput,
-  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -43,7 +41,8 @@ export default () => {
     return (
       <TouchableOpacity
         onPress={() => dispatch(toggleCompleted(id))}
-        activeOpacity={0.6}>
+        activeOpacity={0.6}
+        hitSlop={{top: 10, right: 10, bottom: 10, left: 10}}>
         <MIcon name={iconName} size={24} color="#003491" />
       </TouchableOpacity>
     );
