@@ -1,12 +1,8 @@
 Projeto desenvolvido com React Native para mostrar o funcionamento do Redux
 
-### Init New App
+### Init New Project
 
 > npx react-native init ProjectName
-
-### Init New App With Typescript
-
-> npx react-native init ProjectName --template react-native-template-typescript
 
 ### Connect with NoxPlayer:
 
@@ -31,3 +27,7 @@ Projeto desenvolvido com React Native para mostrar o funcionamento do Redux
 ### Test APK
 
 > npx react-native run-android --variant=release
+
+### Para que os componentes apareçam ao teclar Ctrl + Space, instale:
+
+> npm install --save @types/react-native

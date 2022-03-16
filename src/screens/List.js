@@ -84,9 +84,9 @@ export default () => {
           style={styles.textInputTask}
           placeholder="Adicione uma tarefa"
           placeholderTextColor={'#a3a3a3'}
+          returnKeyType="done"
           onChangeText={setItem}
           value={item}
-          returnKeyType="done"
           onSubmitEditing={onSubmitItem}
         />
         <TouchableOpacity
